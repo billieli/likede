@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
+// 登录链接
 export function login(data) {
   return request({
-    url: '/vue-admin-template/user/login',
+    url: '/user-service/user/login',
     method: 'post',
     data
   })
