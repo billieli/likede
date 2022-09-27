@@ -58,8 +58,8 @@
         </el-form-item>
 
         <el-button :loading="loading" type="primary" style="width:88%;margin-bottom:30px;background-color:#2e50e1; " @click="handleLogin" @click.native.prevent="handleLogin">点击登录</el-button>
-
       </div>
+
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span>
@@ -72,7 +72,6 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import { getImg } from '@/api/public'
-import { login } from '@/api/user'
 
 export default {
   name: 'Login',
@@ -152,24 +151,19 @@ export default {
       console.log(1, data)
     },
     async handleLogin() {
-      const { data } = await login(this.loginForm)
-      console.log(2, data)
-      this.$refs.loginForm.validate(valid => {
+      try {
+        // await this.$refs.loginForm.validator()
         this.loading = true
-        if (valid) {
-          try {
-            this.$store.commit('user/SET_TOKEN', data.token)
-            this.$router.push('/404')
-          } finally {
-            this.loading = false
-          }
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+        await this.$store.dispatch('user/loginAction', this.loginForm)
+        setTimeout(() => {
+          this.$router.push('/home')
+        }, 0)
+      } finally {
+        this.loading = false
+      }
     }
   }
+
 }
 </script>
 

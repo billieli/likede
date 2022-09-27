@@ -14,7 +14,7 @@ export const constantRoutes = [
   },
   {
     path: '/home',
-    component: () => import('@/views/form'),
+    component: () => import('@/layout/index'),
     hidden: true
   },
 

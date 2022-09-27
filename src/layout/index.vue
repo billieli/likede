@@ -1,14 +1,16 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
-    <div class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-      </div>
-      <app-main />
-    </div>
-  </div>
+
+    <navbar style="width: 100%;" />
+
+    <el-aside>
+      <sidebar class="sidebar-container" style="margin-top:calc(100vh- 50px) " />
+    </el-aside>
+    <el-main>Main</el-main>
+
+      <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
+
+    </el-header></div>
 </template>
 
 <script>
@@ -32,21 +34,23 @@ export default {
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader
-    },
-    classObj() {
-      return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
-      }
-    }
-  },
-  methods: {
-    handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    }
+    } },
+  // classObj() {
+  //   return {
+  //     hideSidebar: !this.sidebar.opened,
+  //     openSidebar: this.sidebar.opened,
+  //     withoutAnimation: this.sidebar.withoutAnimation,
+  //     mobile: this.device === 'mobile'
+  //   }
+  // }
+
+  created() {
+    // this.$store.dispatch('user/getUserInfo')
   }
+  // methods: {
+  //   handleClickOutside() {
+  //     this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+  //   }
 }
 </script>
 
@@ -64,30 +68,25 @@ export default {
       top: 0;
     }
   }
-  .drawer-bg {
-    background: #000;
-    opacity: 0.3;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 999;
+
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
   }
 
-  .fixed-header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
-    transition: width 0.28s;
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
   }
 
-  .hideSidebar .fixed-header {
-    width: calc(100% - 54px)
-  }
-
-  .mobile .fixed-header {
-    width: 100%;
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
   }
 </style>

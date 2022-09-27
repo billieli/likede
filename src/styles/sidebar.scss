@@ -10,11 +10,14 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    // background-color: $menuBg;
+    //  background: -webkit-linear-gradient(bottom, #3d6df8, #5b8cff);
+    background-color: #fff;
+    
     height: 100%;
     position: fixed;
     font-size: 0px;
-    top: 0;
+    top: 50px;
     bottom: 0;
     left: 0;
     z-index: 1001;
@@ -27,6 +30,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
+    background: url('~@/assets/common/leftnavBg.png') no-repeat 0 100%;
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -94,6 +98,7 @@
   .hideSidebar {
     .sidebar-container {
       width: 54px !important;
+    
     }
 
     .main-container {
@@ -224,3 +229,31 @@
     }
   }
 }
+  .el-menu {
+      border: none;
+      height: 100%;
+      width: 100% !important;
+      a{
+        li{
+          .svg-icon{
+            color: #fff;
+            font-size: 18px;
+            vertical-align: middle;
+            .icon{
+              color:#fff;
+            }
+          }
+          span{
+            color: #fff;
+          }
+          &:hover{
+            .svg-icon{
+              color: #43a7fe
+            }
+            span{
+              color: #43a7fe;
+            }
+          }
+        }
+      }
+    }
